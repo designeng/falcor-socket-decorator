@@ -21,7 +21,7 @@
     "karma-browser": "karma start test/config/browser/karma.conf.js",
     "test": "npm run karma-browser",
     "start": "npm run build & node --harmony server",
-    "compile": "babel source/connectModel.js --out-file dist/index.js",
+    "compile": "mkdir dist & babel source/connectModel.js --out-file dist/index.js",
     "prepublish": "npm run compile"
   },
   "license": "MIT",
