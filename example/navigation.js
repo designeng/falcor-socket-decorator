@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-
 import connectModel from 'connect-data-decorator';
 
 @connectModel({ 
