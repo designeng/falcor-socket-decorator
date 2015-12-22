@@ -27,9 +27,10 @@
   "license": "MIT",
   "main": "dist/index.js",
   "dependencies": {
+    "connect-data-decorator": "git://github.com/designeng/connect-data-decorator#v0.0.2",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "connect-data-decorator": "git://github.com/designeng/connect-data-decorator#v0.0.2"
+    "socket.io": "^1.3.7"
   },
   "devDependencies": {
     "babel-core": "^6.3.15",
