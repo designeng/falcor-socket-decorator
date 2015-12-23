@@ -3,7 +3,7 @@ const router  = express.Router();
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import User from '../../../../source/user';
+import User from '../../source/user';
 
 router.get('/user', function(req, res) {
     res.send('<!doctype html><body>\n' +
