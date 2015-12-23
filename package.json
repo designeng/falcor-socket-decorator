@@ -21,7 +21,7 @@
     "karma-browser": "karma start test/config/browser/karma.conf.js",
     "test": "npm run karma-browser",
     "start": "npm run build & npm run start-dev",
-    "start-dev": "better-npm-run start-dev"
+    "start-dev": "npm run build & better-npm-run start-dev"
   },
   "betterScripts": {
     "start-dev": {

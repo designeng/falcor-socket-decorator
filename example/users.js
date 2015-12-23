@@ -5,7 +5,7 @@ import connectModel from 'connect-data-decorator';
     sourcePath  : '/user/model.json',
     getValue    : 'users'
 })
-export default class User extends React.Component {
+export default class Users extends React.Component {
     constructor() {
         super();
         this.state = {users: []};
@@ -21,6 +21,7 @@ export default class User extends React.Component {
                     { users[idx].name }
                 </a></li>;
         });
+
         return <ul>{ users }</ul>;
     }
 }
