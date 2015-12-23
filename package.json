@@ -29,7 +29,7 @@
       "env": {
         "NODE_PATH": "./server",
         "NODE_ENV": "development",
-        "PORT": 80
+        "PORT": 8080
       }
     }
   },
