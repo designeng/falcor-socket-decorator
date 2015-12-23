@@ -1,5 +1,5 @@
 import express from 'express';
-let router  = express.Router();
+const router  = express.Router();
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
