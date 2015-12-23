@@ -1,8 +1,9 @@
 import React from 'react';
 import connectModel from 'connect-data-decorator';
+import config from './config';
+import socket from '../source';
 
-var socket = io('http://localhost');
-
+@socket({ host: config.socketio.host })
 export default class Chat extends React.Component {
     constructor() {
         super();
@@ -10,7 +11,7 @@ export default class Chat extends React.Component {
     }
 
     render() {
-        socket.emit('chat_rendered', { my: 'data' });
+        this.context.socket.emit('chat_rendered', { my: 'data123' });
         return <div>CHAT COMPONENT</div>;
     }
 }
