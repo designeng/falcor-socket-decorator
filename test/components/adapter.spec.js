@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactDom from 'react-dom';
 import { expect } from 'chai';
 
-import connectModel from '../../source/connectModel';
+import socketAdapter from '../../source';
 
 class NoopComponent extends React.Component {
     render() {
@@ -10,7 +10,7 @@ class NoopComponent extends React.Component {
     }
 }
 
-describe('connectModel',  () => {
+describe('socket.io adapter',  () => {
 
     let root = {}
 
@@ -28,9 +28,6 @@ describe('connectModel',  () => {
             expect(error.message).to.be.a('string');
             expect(error.message).to.equal('Falcor model sourcePath should be provided!');
         }
-
-        // TODO: chai way? - make it work
-        // expect(new connectModel({})).to.throw(new Error('Falcor model sourcePath should be provided!'))
     });
 
     it('instance should be instance of react component class', () => {
