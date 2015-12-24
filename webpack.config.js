@@ -1,3 +1,4 @@
+var path = require('path');
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
@@ -10,7 +11,11 @@ module.exports = {
             {
                 test: /\.js/,
                 loader: 'babel',
-                exclude: /node_modules/
+                // exclude: /node_modules/,
+                include: [
+                    path.resolve(__dirname, "source"),
+                    path.resolve(__dirname, "example")
+                ]
             }
         ]
     },
