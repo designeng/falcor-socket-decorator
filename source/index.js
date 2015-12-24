@@ -19,7 +19,7 @@ export default function socketIoDecorator(config) {
             socket: PropTypes.object.isRequired
         };
 
-        return class ConnectModelComponent extends React.Component {
+        return class SocketIoDecoratorComponent extends React.Component {
 
             constructor(props) {
                 super(props);

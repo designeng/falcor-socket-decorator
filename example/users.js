@@ -2,7 +2,7 @@ import React from 'react';
 import connectModel from 'connect-data-decorator';
 
 @connectModel({
-    sourcePath  : '/user/model.json',
+    sourcePath  : '/users/model.json',
     getValue    : 'users'
 })
 export default class Users extends React.Component {

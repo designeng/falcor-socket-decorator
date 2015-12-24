@@ -5,8 +5,15 @@ import { expect } from 'chai';
 import config from '../fixtures/config';
 import socketIoDecorator from '../../source';
 
+class Socket {
+    constructor() {
+    }
+}
+
 // because of "/socket.io/socket.io.js" attachment in index.html provides global
-global.io = () => {}
+global.io = () => {
+    return new Socket();
+}
 
 class NoopComponent extends React.Component {
     render() {
@@ -42,7 +49,7 @@ describe('socket.io decorator',  () => {
     it('instance should have socket in state object', () => {
         const Decor = socketIoDecorator({ host: config.socketio.host })(NoopComponent);
         let decorated = new Decor();
-        expect(decorated.state.socket).not.to.be.null;
+        expect(decorated.state.socket).to.be.ok;
     });
 
 });

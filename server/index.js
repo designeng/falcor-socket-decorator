@@ -8,7 +8,7 @@ var FalcorServer = require('falcor-express');
 
 /* ---- import falcor routers ---- */
 import NavigationRouter     from './api/falcor/routers/navigation';
-import UserRouter           from './api/falcor/routers/user';
+import UsersRouter           from './api/falcor/routers/users';
 
 import chatFactory from './routers/chat';
 var chatRouter = chatFactory(io);
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 /* ---- falcor models API ---- */
 app.use('/navigation/model.json',   FalcorServer.dataSourceRoute(() => new NavigationRouter()));
-app.use('/user/model.json',         FalcorServer.dataSourceRoute(() => new UserRouter()));
+app.use('/users/model.json',         FalcorServer.dataSourceRoute(() => new UsersRouter()));
 
 // express routers
 app.use('/', chatRouter);
