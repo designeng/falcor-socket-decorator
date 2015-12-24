@@ -27,10 +27,6 @@ class NoopComponent extends React.Component {
 }
 
 @socketIoDecorator({ host: config.socketio.host })
-// @connectModel({
-//     sourcePath  : '/users/model.json',
-//     getValue    : 'users'
-// })
 class Chat extends React.Component {
     constructor() {
         super();

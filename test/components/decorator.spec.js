@@ -8,6 +8,10 @@ import socketIoDecorator from '../../source';
 class Socket {
     constructor() {
     }
+
+    emit(channel, data){
+        return 1;
+    }
 }
 
 // because of "/socket.io/socket.io.js" attachment in index.html provides global
@@ -18,6 +22,20 @@ global.io = () => {
 class NoopComponent extends React.Component {
     render() {
         return <div></div>
+    }
+}
+
+@socketIoDecorator({ host: config.socketio.host })
+class Chat extends React.Component {
+    constructor() {
+        super();
+        this.state = {};
+    }
+
+    render() {
+        var socket = this.context.socket;
+        var emitted = socket.emit('chat_rendered', { my: 'data123' });
+        return <div id="chat">{ emitted }</div>
     }
 }
 
@@ -50,6 +68,11 @@ describe('socket.io decorator',  () => {
         const Decor = socketIoDecorator({ host: config.socketio.host })(NoopComponent);
         let decorated = new Decor();
         expect(decorated.state.socket).to.be.ok;
+    });
+
+    it('should render socket ok info', () => {
+        ReactDom.render(<Chat />, root._rootElement);
+        expect(document.querySelector('#chat').innerHTML).to.equal('1');
     });
 
 });
