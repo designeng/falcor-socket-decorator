@@ -6,8 +6,19 @@ import config from '../fixtures/config';
 import socketIoDecorator    from '../../source';
 import connectModel         from '../../source/connectModel';
 
+class Socket {
+    constructor() {
+    }
+
+    emit(channel, data){
+        return 1;
+    }
+}
+
 // because of "/socket.io/socket.io.js" attachment in index.html provides global
-global.io = () => {}
+global.io = () => {
+    return new Socket();
+}
 
 class NoopComponent extends React.Component {
     render() {
@@ -27,8 +38,9 @@ class Chat extends React.Component {
     }
 
     render() {
-        var isSocket = this.state.socket? 1 : 0;
-        return <div id="chat">{ isSocket }</div>
+        var socket = this.context.socket;
+        var emitted = socket.emit('chat_rendered', { my: 'data123' });
+        return <div id="chat">{ emitted }</div>
     }
 }
 
@@ -66,7 +78,7 @@ describe('socket.io decorator composition',  () => {
         expect(decorated.state.socket).to.be.ok;
     });
 
-    it('should render with truthy socket info', () => {
+    it('should render socket ok info', () => {
         ReactDom.render(<Chat />, root._rootElement);
         expect(document.querySelector('#chat').innerHTML).to.equal('1');
     });
