@@ -27,7 +27,8 @@ export default function(config) {
             }
 
             static childContextTypes = {
-                model: React.PropTypes.object.isRequired
+                model: React.PropTypes.object.isRequired,
+                socket: React.PropTypes.object.isRequired
             };
 
             getChildContext() {
