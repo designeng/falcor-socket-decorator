@@ -53,6 +53,7 @@
     "better-npm-run": "0.0.5",
     "body-parser": "^1.14.1",
     "chai": "^3.4.1",
+    "chai-spies": "^0.7.1",
     "express": "^4.13.3",
     "falcor-express": "git://github.com/designeng/falcor-express.git#request-to-context-check-array",
     "falcor-router": "0.2.9",

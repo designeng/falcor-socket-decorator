@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
 import ReactDom from 'react-dom';
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
+import spies from 'chai-spies';
+
+chai.use(spies);
 
 import config from '../fixtures/config';
 import socketIoDecorator    from '../../source';
@@ -29,10 +32,10 @@ class NoopComponent extends React.Component {
 }
 
 @socketIoDecorator({ host: config.socketio.host })
-@connectModel({
-    sourcePath  : '/users/model.json',
-    getValue    : 'users'
-})
+// @connectModel({
+//     sourcePath  : '/users/model.json',
+//     getValue    : 'users'
+// })
 class Chat extends React.Component {
     constructor() {
         super();
@@ -83,8 +86,16 @@ describe('socket.io decorator composition',  () => {
         expect(component.state.socket).to.be.ok;
     });
 
-    // ERROR: 'Warning: Failed Context Types: Required child context `socket` was not specified in `ConnectModelComponent`. Check the render method of `SocketIoDecoratorComponent`.'
-    xit('should render socket ok info', () => {
+    // how to use chai-spies
+    it('should call component render', () => {
+        var spy = chai.spy.on(Chat.prototype, 'render');
+        ReactDom.render(<Chat />, root._rootElement);
+        expect(spy).to.be.spy;
+        expect(spy).to.have.been.called();
+    });
+
+    // ERROR: 'Warning: Failed Context Types: Required child context `model` was not specified in `SocketIoDecoratorComponent`. Check the render method of `SocketIoDecoratorComponent`.'
+    it('should render socket ok info', () => {
         ReactDom.render(<Chat />, root._rootElement);
         expect(document.querySelector('#chat').innerHTML).to.equal('1');
     });

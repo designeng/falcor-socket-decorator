@@ -21,14 +21,13 @@ export default function(config) {
 
         return class ConnectModelComponent extends React.Component {
 
-            constructor(props) {
-                super(props);
+            constructor(props, context) {
+                super(props, context);
                 this.state = { model: model };
             }
 
             static childContextTypes = {
-                model: React.PropTypes.object.isRequired,
-                socket: React.PropTypes.object.isRequired
+                model: React.PropTypes.object.isRequired
             };
 
             getChildContext() {
