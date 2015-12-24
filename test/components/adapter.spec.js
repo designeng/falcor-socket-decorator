@@ -2,7 +2,11 @@ import React, { PropTypes } from 'react';
 import ReactDom from 'react-dom';
 import { expect } from 'chai';
 
-import socketAdapter from '../../source';
+import config from '../fixtures/config';
+import socketIoDecorator from '../../source';
+
+// because of "/socket.io/socket.io.js" attachment in index.html provides global
+global.io = () => {}
 
 class NoopComponent extends React.Component {
     render() {
@@ -10,7 +14,7 @@ class NoopComponent extends React.Component {
     }
 }
 
-describe('socket.io adapter',  () => {
+describe('socket.io decorator',  () => {
 
     let root = {}
 
@@ -23,22 +27,22 @@ describe('socket.io adapter',  () => {
 
     it('should throw error with zero config', () => {
         try {
-            let connection = new connectModel({});
+            new socketIoDecorator({});
         } catch (error) {
             expect(error.message).to.be.a('string');
-            expect(error.message).to.equal('Falcor model sourcePath should be provided!');
+            expect(error.message).to.equal('[ERROR socketIoDecorator] Host should be provided!');
         }
     });
 
     it('instance should be instance of react component class', () => {
-        let connection = connectModel({ sourcePath: '/navigation/model.json' })(NoopComponent);
-        expect(new connection).to.be.an.instanceof(React.Component);
+        const Decor = socketIoDecorator({ host: config.socketio.host })(NoopComponent);
+        expect(new Decor).to.be.an.instanceof(React.Component);
     });
 
-    it('instance should have model in state object', () => {
-        const Component = connectModel({ sourcePath: '/navigation/model.json' })(NoopComponent);
-        let component = new Component();
-        expect(component.state.model).not.to.be.null;
+    it('instance should have socket in state object', () => {
+        const Decor = socketIoDecorator({ host: config.socketio.host })(NoopComponent);
+        let decorated = new Decor();
+        expect(decorated.state.socket).not.to.be.null;
     });
 
 });

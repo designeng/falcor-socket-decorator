@@ -13,7 +13,7 @@ export default class Users extends React.Component {
 
     render() {
         let users = this.state.users;
-        console.log("USERS:::::", users);
+        console.log("USERS::::::", users);
         
         users = Object.keys(users).map(idx => {
             return <li key={ idx }>
