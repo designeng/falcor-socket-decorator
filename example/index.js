@@ -3,6 +3,11 @@ import { render } from 'react-dom';
 import Navigation from './navigation'
 import Chat from './chat'
 import Users from './users'
+import Interactive from './interactive'
+
+const activateCallback = () => {
+    console.log("activateCallback invoked");
+}
 
 export default class Application extends React.Component {
     render() {
@@ -11,6 +16,7 @@ export default class Application extends React.Component {
                 <Navigation />
                 <Chat />
                 <Users />
+                <Interactive activate={activateCallback} />
             </div>
         )
     }
