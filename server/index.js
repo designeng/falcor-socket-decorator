@@ -15,8 +15,8 @@ var userRouter = require('./routers/user');
 import chatFactory from './routers/chat';
 var chatRouter = chatFactory(io);
 
-var port = process.env.PORT;
-app.set('port', port || 8080);
+var port = process.env.PORT || 8080;
+app.set('port', port);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
